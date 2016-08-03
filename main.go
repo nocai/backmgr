@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "backmgr/filter"
 	_ "backmgr/routers"
 	"github.com/astaxie/beego"
 )

@@ -1,16 +1,36 @@
 package back
 
 import (
+	"errors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+)
+
+var (
+	UsernameNotExist = errors.New("用户名不存在")
+	PasswordNotMatch = errors.New("密码不匹配")
 )
 
 type Admin struct {
 	Id       int64
 	Username string
 	Password string
+	RoleId   int64
 }
 
+func Login(username, password string) (Admin, error) {
+	admin, err := GetAdminByUsername(username)
+	if err != nil {
+		return Admin{}, UsernameNotExist
+	}
+
+	if admin.Password != password {
+		return admin, PasswordNotMatch
+	}
+	return admin, nil
+}
+
+// 取管理员帐号By Usernam
 func GetAdminByUsername(username string) (Admin, error) {
 	o := orm.NewOrm()
 
@@ -19,6 +39,7 @@ func GetAdminByUsername(username string) (Admin, error) {
 	return admin, err
 }
 
+// Username是否存在
 func ExistOfUsername(username string) bool {
 	admin, err := GetAdminByUsername(username)
 	if err != nil {
