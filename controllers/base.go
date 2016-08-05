@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/validation"
 )
 
 const (
@@ -20,7 +21,7 @@ type JsonMsg struct {
 }
 
 func (this *BaseController) PrintOk() {
-	this.PrintOkMsg("success")
+	this.PrintOkMsg("操作成功")
 }
 
 func (this *BaseController) PrintOkMsg(msg string) {
@@ -32,7 +33,7 @@ func (this *BaseController) PrintOkMsgData(msg string, data interface{}) {
 }
 
 func (this *BaseController) PrintError() {
-	this.PrintErrorMsg("fail")
+	this.PrintErrorMsg("系统异常")
 }
 
 func (this *BaseController) PrintErrorMsg(msg string) {
@@ -49,4 +50,8 @@ func (this *BaseController) Print(code int, msg string, data interface{}) {
 	this.Data["json"] = jsonMsg
 
 	this.ServeJSON()
+}
+
+func (this *BaseController) PrintErrorMsgValid(r *validation.Result) {
+	this.PrintErrorMsg(r.Error.Key + " " + r.Error.Message)
 }
