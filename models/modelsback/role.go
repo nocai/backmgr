@@ -1,4 +1,4 @@
-package backmodels
+package modelsback
 
 import (
 	"backmgr/util"
@@ -16,7 +16,8 @@ type Role struct {
 	RoleName string
 }
 
-func pageRole(pageNo, pageSize int64, roleName string) util.Pager {
+// 分页
+func PageRole(pageNo, pageSize int64, roleName string) *util.Pager {
 	var countSql = "select count(r.id) from role as r where 1 = 1"
 	var pageSql = "select * from role as r where 1 = 1"
 
@@ -29,25 +30,25 @@ func pageRole(pageNo, pageSize int64, roleName string) util.Pager {
 
 	r, err := o.Raw(countSql).Exec()
 	if err != nil {
-		return *util.NewPager(pageNo, pageSize, 0, nil)
+		return util.NewPager(pageNo, pageSize, 0, nil)
 	}
 	var total int64
 	total, err = r.LastInsertId()
 	if err != nil {
-		return *util.NewPager(pageNo, pageSize, 0, nil)
+		return util.NewPager(pageNo, pageSize, 0, nil)
 	}
 
 	var roles []Role
 	_, err = o.Raw(pageSql).QueryRows(&roles)
 	if err != nil {
-		return *util.NewPager(pageNo, pageSize, 0, nil)
+		return util.NewPager(pageNo, pageSize, 0, nil)
 	}
 
 	var pageData []interface{}
 	for _, role := range roles {
-		pageData = append(pageData, role.(interface{}))
+		pageData = append(pageData, role)
 	}
-	return *util.NewPager(pageNo, pageSize, total, &pageData)
+	return util.NewPager(pageNo, pageSize, total, pageData)
 }
 
 func GetRoleById(id int64) (Role, error) {

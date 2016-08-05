@@ -1,4 +1,4 @@
-package backmodels
+package modelsback
 
 import (
 	"errors"

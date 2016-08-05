@@ -1,4 +1,4 @@
-package backmodels
+package modelsback
 
 import (
 	"github.com/astaxie/beego/orm"

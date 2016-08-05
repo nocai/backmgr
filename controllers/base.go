@@ -8,6 +8,9 @@ import (
 const (
 	OK  int = 200
 	Bad int = 400
+
+	PageNo   = 1
+	PageSize = 10
 )
 
 type BaseController struct {

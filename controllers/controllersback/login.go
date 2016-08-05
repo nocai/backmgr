@@ -1,8 +1,8 @@
-package backcontrollers
+package controllersback
 
 import (
 	"backmgr/controllers"
-	"backmgr/models/backmodels"
+	"backmgr/models/modelsback"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 )
@@ -33,25 +33,25 @@ func (this *LoginController) Login() {
 	}
 
 	// 登录
-	adminUser, err := backmodels.Login(admin, pwd)
-	if err == backmodels.UsernameNotExist {
+	adminUser, err := modelsback.Login(admin, pwd)
+	if err == modelsback.UsernameNotExist {
 		this.PrintErrorMsg("用户名不存在")
 		return
 	}
-	if err == backmodels.PasswordNotMatch {
+	if err == modelsback.PasswordNotMatch {
 		this.PrintErrorMsg("密码不正确")
 		return
 	}
 
 	// 取角色
-	// role, err := backmodels.GetRoleByAdminId(adminUser.Id)
+	// role, err := modelsback.GetRoleByAdminId(adminUser.Id)
 	// if err != nil {
 	// 	beego.Error(err)
 	// 	this.PrintErrorMsg("没有角色")
 	// 	return
 	// }
 
-	// ress, err := backmodels.GetResourceByRoleId(role.Id)
+	// ress, err := modelsback.GetResourceByRoleId(role.Id)
 	// if err != nil {
 	// 	beego.Error(err)
 	// }
@@ -63,7 +63,7 @@ func (this *LoginController) Login() {
 }
 
 // 将用户Resource放到Session里
-func setSesstionRess(controller *LoginController, ress []backmodels.Resource) {
+func setSesstionRess(controller *LoginController, ress []modelsback.Resource) {
 	var auths []string
 	for k, v := range ress {
 		beego.Info(k)
@@ -73,7 +73,7 @@ func setSesstionRess(controller *LoginController, ress []backmodels.Resource) {
 }
 
 // 将用户信息放到Session里
-func setSesseionAdmin(controller *LoginController, admin backmodels.Admin) {
+func setSesseionAdmin(controller *LoginController, admin modelsback.Admin) {
 	controller.SetSession(ADMIN_ID, admin.Id)
 	controller.SetSession(ADMIN_NAME, admin.Username)
 }

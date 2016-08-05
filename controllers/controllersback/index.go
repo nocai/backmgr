@@ -1,4 +1,4 @@
-package backcontrollers
+package controllersback
 
 import (
 	// "github.com/astaxie/beego"
