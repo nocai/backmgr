@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/static/back/css/style.css">
+</head>
+
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">首页</a></li>
+			<li><a href="#">角色管理</a></li>
+			<li><a href="#">角色列表</a></li>
+			<li><a href="#">添加角色</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+		<div class="formtext">
+			Hi，<b>{{.Name}}</b>，请填写详细信息！
+		</div>
+
+        <ul class="forminfo">
+            <li>
+            	<label>角色名称<b>*</b></label>
+            	<input id="roleName" type="text" class="dfinput" value="{{.Role.RoleName}}" placeholder="角色名称" />
+        	</li>
+            <li>
+            	<label>&nbsp;</label>
+            	<input id="addBtn" type="button" class="btn" value="提交"/>
+            	<input id="backBtn" type="button" class="btn" value="返回"/>
+        	</li>
+        </ul>
+	</div>
+
+	<input type="hidden" id="id" name="id" value="{{.Role.Id}}">
+</body>
+	<script type="text/javascript" src="/static/back/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/js/validator.js"></script>
+
+	<script type="text/javascript">
+		var AddRoleUrl = '/back/roles.html';
+		var UpdateRoleUrl = '/back/roles/';
+		var ListRoleHtmlUrl = '/back/roles.html'
+
+		$(function() {
+			// 添加
+			$('#addBtn').click(function() {
+				var roleName = $('#roleName').val()
+				if (Validator.isNull(roleName)) {
+					alert('角色名不可为空')
+					return 
+				}
+
+				var id = $('#id').val()
+
+				var url;
+				var methodType;
+				if (Validator.isNull(id)) {
+					url = AddRoleUrl;
+					methodType = 'post';
+				} else {
+					url = UpdateRoleUrl + id;
+					methodType = 'put';
+				}
+
+				$.ajax({
+				  	type: methodType,
+				  	url: url,
+				  	data : {roleName, roleName},
+				  	dataType: "json",
+				  	success : function(r) {
+			  			if (r) {
+							if (r.Code == 200) {
+								if (methodType == 'post') {
+									// 添加
+									if (confirm("添加成功!是否继续添加?")) {
+										$('#roleName').val('')
+									} else {
+										location.href = ListRoleHtmlUrl;
+									}	
+								} else {
+									// 更新
+									alert(r.Msg)
+									location.href = ListRoleHtmlUrl;
+								}
+							} else {
+								alert(r.Msg)
+							}
+						}
+				  	}
+
+				});
+				// 添加角色
+				// $.post(postUrl, {roleName : roleName}, function(r) {
+				// 	if (r) {
+				// 		if (r.Code == 200) {
+				// 			if (confirm(opMsg + "成功!是否继续添加?")) {
+				// 				$('#roleName').val('')
+				// 			} else {
+				// 				location.href = ListRoleHtmlUrl;
+				// 			}	
+				// 		} else {
+				// 			alert(r.Msg)
+				// 		}
+				// 	}
+				// }, 'json')
+
+			});
+
+			// 返回
+			$('#backBtn').click(function() {
+				location.href = ListRoleHtmlUrl;
+			})
+		})
+		
+	</script>
+
+</html>

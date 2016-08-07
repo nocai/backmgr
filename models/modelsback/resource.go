@@ -8,7 +8,9 @@ type Resource struct {
 	Id   int64
 	Name string
 	// 资源路径
-	ResPath string
+	ActionPath string
+	// 页面路径
+	PagePath string
 }
 
 // 以角色ID取对应资源

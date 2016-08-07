@@ -67,7 +67,7 @@ func setSesstionRess(controller *LoginController, ress []modelsback.Resource) {
 	var auths []string
 	for k, v := range ress {
 		beego.Info(k)
-		auths[k] = v.ResPath
+		auths[k] = v.ActionPath
 	}
 	controller.SetSession(AUTHS, auths)
 }

@@ -102,7 +102,7 @@ h2{font-weight:normal;}
 .toolbar{float:left;}
 .toolbar li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;border-radius: 3px; behavior:url(js/pie.htc); cursor:pointer;}
 .toolbar li span{float:left; margin-left:10px; margin-right:5px; margin-top:5px;}
-.toolbar1{float:right;}
+.toolbar1{float:right;margin-bottom:8px;}
 .toolbar1 li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-left:5px;border-radius: 3px; behavior:url(js/pie.htc);}
 .toolbar1 li span{float:left; margin-left:10px; margin-right:5px; margin-top:5px;}
 .tablelist{border:solid 1px #cbcbcb; width:100%; clear:both;}
@@ -181,7 +181,7 @@ h2{font-weight:normal;}
 .formbody{padding:10px 18px;}
 .formtitle{border-bottom:solid 1px #d0dee5; line-height:35px; position:relative; height:35px; margin-bottom:28px;}
 .formtitle span{font-weight:bold;font-size:14px; border-bottom:solid 3px #66c9f3;float:left; position:absolute; z-index:100; bottom:-1px; padding:0 3px; height:30px; line-height:30px;}
-.forminfo{padding-left:23px;}
+.forminfo{padding-left:25px;}
 .forminfo li{margin-bottom:13px; clear:both;}
 .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
 .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
@@ -289,9 +289,9 @@ h2{font-weight:normal;}
 .enter:hover{color:#fff; background:#d98c1d;}
 .clear{clear:both;}
 
-/*seachform*/
-.seachform{ height:42px;}
-.seachform li{float:left; margin-right:15px;}
-.seachform li label{padding-right:10px; float:left; line-height:32px;}
+/*searchform*/
+.searchform{float:left; height:42px;}
+.searchform li{float:left; margin-right:15px;}
+.searchform li label{padding-right:10px; float:left; line-height:32px;}
 .scinput{width:150px; height:32px; line-height:32px; border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; text-indent:10px;}
 .scbtn{width:85px;height:35px; background:url(../images/btnbg.png) no-repeat center; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;border-radius:3px; behavior:url(js/pie.htc);}
