@@ -6,6 +6,7 @@ type RoleResourceRef struct {
 	ResId  int64 `orm:"fk"`
 }
 
+// 自定义表名 rele_res_ref
 func (this *RoleResourceRef) TableName() string {
-	return "rele_res"
+	return "role_res_ref"
 }

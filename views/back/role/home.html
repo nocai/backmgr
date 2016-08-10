@@ -50,7 +50,7 @@
 							角色名<i class="sort"><img src="/static/back/images/px.gif" /></i></th>
 						</a>
 					</th>
-					<th>
+					<th width="150px">
 						<a href="#" orderBy="create_time">
 							创建时间<i class="sort"><img src="/static/back/images/px.gif" /></i></th>
 						</a>
@@ -64,7 +64,7 @@
 						<td><input name="ids" type="checkbox" value="{{.Id}}" /></td>
 						<td>{{.Id}}</td>
 						<td>{{.RoleName}}</td>
-						<td>{{date .CreateTime "Y-m-d"}}</td>
+						<td>{{date .CreateTime "Y-m-d H:m:s"}}</td>
 						<td>
 							<a href="javascript:toUpdate({{.Id}});" class="tablelink">修改</a>     
 							<a href="javascript:doDelete({{.Id}});" class="tablelink"> 删除</a>
