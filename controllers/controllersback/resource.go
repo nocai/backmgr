@@ -2,19 +2,13 @@ package controllersback
 
 import (
 	"backmgr/controllers"
-	// "backmgr/models/modelsback"
-	// "github.com/astaxie/beego"
-	// "backmgr/util"
-	// "github.com/astaxie/beego/validation"
-	// "strconv"
-	// "time"
 )
 
 type ResourceController struct {
-	controllers.BaseController
+	controllers.RightLayoutController
 }
 
 func (this *ResourceController) ListResource() {
-	this.Layout = "back/layout.html"
-	this.TplName = "back/res/home.tpl"
+	this.SetRightLayout([]string{"资源管理", "资源列表"})
+	this.TplName = "back/res/home.html"
 }

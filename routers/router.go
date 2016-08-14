@@ -18,12 +18,16 @@ func init() {
 
 	beego.Router("/back/login", &controllersback.LoginController{}, "post:Login")
 
-	beego.Router("/back/roles", &controllersback.RoleController{}, "get:ListRole")
+	// 角色管理
+	beego.Router("/back/roles.html", &controllersback.RoleController{}, "get:ListRole")
 	beego.Router("/back/roles", &controllersback.RoleController{}, "post:CreateRole")
 	beego.Router("/back/roles/:id:int", &controllersback.RoleController{}, "get:GetRoleById")
 	beego.Router("/back/roles/:id:int", &controllersback.RoleController{}, "put:UpdateRoleById")
 	beego.Router("/back/roles/:id:int", &controllersback.RoleController{}, "delete:DeleteRoleById")
 
 	beego.Router("/back/roles/add.html", &controllersback.RoleController{}, "get:Add")
+
+	// 资源管理
+	beego.Router("/back/res.html", &controllersback.ResourceController{}, "get:ListResource")
 
 }

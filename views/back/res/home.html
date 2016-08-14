@@ -1,1 +1,65 @@
-home
+<ul class="toolbar1">
+	<li id="addBtn"><span><img src="/static/back/images/t01.png" /></span>添加</li>
+</ul>
+
+<form action="/back/roles.html" id="searchform">
+	<input type="hidden" id="orderBy" name="orderBy" value="{{.OrderBy}}">
+	<input type="hidden" id="order" name="order" value="{{.Order}}">
+
+	<input type="hidden" id="pageNo" name="pageNo" value="1">
+	<input type="hidden" id="pageSize" name="pageSize" value="{{.Pager.PageSize}}">
+
+	<ul class="searchform">
+		<li>
+			<label>角色名称</label>
+			<input type="text" name="roleName" value="{{.RoleName}}" class="dfinput" style="width:150px" placeholder="角色名称">
+		</li>
+		<li>
+			<button class="scbtn">查询</button>
+		</li>
+	</ul>
+</form>
+<table class="tablelist">
+	<thead>
+		<tr>
+			<th width="35px"><input name="" type="checkbox" value="" checked="checked"/></th>
+			<th width="50px">
+				<a href="#" orderBy="id">
+					编号<i class="sort"><img src="/static/back/images/px.gif" /></i>
+				</a>
+			</th>
+			<th>
+				<a href="#" orderBy="role_name">
+					角色名<i class="sort"><img src="/static/back/images/px.gif" /></i></th>
+				</a>
+			</th>
+			<th width="150px">
+				<a href="#" orderBy="create_time">
+					创建时间<i class="sort"><img src="/static/back/images/px.gif" /></i></th>
+				</a>
+			</th>
+			<th width="100px">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{range .Pager.PageData}}
+		<tr>
+			<td><input name="ids" type="checkbox" value="{{.Id}}" /></td>
+			<td>{{.Id}}</td>
+			<td>{{.RoleName}}</td>
+			<td>{{date .CreateTime "Y-m-d H:m:s"}}</td>
+			<td>
+				<a href="javascript:toUpdate({{.Id}});" class="tablelink">修改</a>     
+				<a href="javascript:doDelete({{.Id}});" class="tablelink"> 删除</a>
+			</td>
+		</tr> 
+		{{end}}
+	</tbody>
+</table>
+<div id="pager" class="pagin"></div>
+
+<script type="text/javascript">
+	$(function() {
+		alert('a')
+	})
+</script>
